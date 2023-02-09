@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TeamApplication.Models.StatDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach(var stat in Model)
+            {
+                <h2><a href="/Stat/Details/@stat.StatID">Playername: @stat.PlayerName</a></h2>
+                <div>Team scored against: @stat.TeamScoredAgainst</div>
+            }
+
