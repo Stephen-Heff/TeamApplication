@@ -1,7 +1,7 @@
 # Priemer League TeamApplication 
 Team Application (CRUD)
 This is a content management system for Priemier Legaue Teams.
--Please note: Not all fuctionality works, however those listed below do.
+ - Please note: Not all fuctionality works, however those listed below do.
 
 ## CRUD Functionality:
 You should be able to add a new team, player and stat, update a coach when it changes and delete a player when they retire. 
