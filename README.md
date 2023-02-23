@@ -13,8 +13,9 @@ This database has 3 tables(Player, Team and Stat). Each table has a primary key 
  1. Get a List of Players curl https://localhost:44388/api/PlayerData/ListPlayers
  2. Get a List of Teams curl https://localhost:44388/api/TeamData/ListTeams
  3. Get a List of Stats curl https://localhost:44388/api/StatData/ListStats
- 4. Add a new Team (new team info is in teams.json) curl -H "Content-Type:application/json" -d @teams.json https://localhost:44388/api/TeamData/AddTeam
- 5. Delete an Team curl -d "" https://localhost:44388/api/TeamData/DeleteTeam/{id}
+ 4. View the list of Teams https://localhost:44388/Teams/List
+ 5. Add a new Team (new team info is in teams.json) curl -H "Content-Type:application/json" -d @teams.json https://localhost:44388/api/TeamData/AddTeam
+ 6. Delete an Team curl -d "" https://localhost:44388/api/TeamData/DeleteTeam/{id}
 
 
 
