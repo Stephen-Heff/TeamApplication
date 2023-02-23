@@ -15,4 +15,19 @@ namespace TeamApplication.Models
         public string TeamCity { get; set; }
         public string TeamCoachName { get; set; }
     }
+
+
+    public class TeamDto
+    {
+        [Key]
+        public int TeamID { get; set; }
+        public string TeamName { get; set; }
+        public string TeamCity { get; set; }
+        public string TeamCoachName { get; set; }
+    }
+
+
+
+
+
 }

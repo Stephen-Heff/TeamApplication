@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
 using TeamApplication.Models;
+//using TeamApplication.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace TeamApplication.Controllers
@@ -42,7 +43,7 @@ namespace TeamApplication.Controllers
             //Objective: communicate with our stat data api to retrieve one stat
             // curl https://localhost:44388/api/statdata/liststats{}id
 
-            string url = "findstat/"+id;
+            string url = "statdata/findstat/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             StatDto selectedstat = response.Content.ReadAsAsync<StatDto>().Result;
@@ -59,6 +60,9 @@ namespace TeamApplication.Controllers
         // GET: Stat/New
         public ActionResult New()
         {
+
+            //informatino about all stats in the system
+            //GET api/playerdata/liststats
             return View();
         }
 
@@ -85,50 +89,81 @@ namespace TeamApplication.Controllers
                 return RedirectToAction("Error");
             }
 
-            return RedirectToAction("List");
+            
         }
 
-        // GET: Stat/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
+   
         // POST: Stat/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id)
         {
-            try
-            {
-                // TODO: Add update logic here
+            UpdateStat ViewModel = new UpdateStat();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            //the existing stat information
+            string url = "atatdata/findstat/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            StatDto SelectedStat = response.Content.ReadAsAsync<StatDto>().Result;
+            ViewModel.SelectedStat = SelectedStat;
+
+            // all players to choose from when updating this stat
+            //the existing animal information
+            url = "playersdata/listplayers/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<PlayerDto> PlayersOptions = response.Content.ReadAsAsync<IEnumerable<PlayerDto>>().Result;
+
+            ViewModel.PlayersOptions = PlayersOptions;
+
+            return View(ViewModel);
+        }
+
+        // POST: Stat/Update/5
+        [HttpPost]
+        public ActionResult Update(int id, Stat stat)
+        {
+
+            string url = "statdata/updatestat/" + id;
+            string jsonpayload = jss.Serialize(stat);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+           
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
 
+
+
         // GET: Stat/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "statdata/findstat/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            StatDto selectedstat = response.Content.ReadAsAsync<StatDto>().Result;
+            return View(selectedstat);
         }
 
         // POST: Stat/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "statdata/deletestat/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

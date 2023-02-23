@@ -16,11 +16,33 @@ namespace TeamApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/TeamData/ListTeams
+
+        /// <summary>
+        /// Returns all teams in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all teamss in the database
+        /// </returns>
+        /// <example>
+        /// GET: api/TeamData/ListTeams
+        /// </example>
+        
         [HttpGet]
-        public IQueryable<Team> ListTeams()
+        public IEnumerable<TeamDto> Listteams()
         {
-            return db.Teams;
+            List<Team> Teams = db.Teams.ToList();
+            List<TeamDto> TeamsDtos = new List<TeamDto>();
+
+            Teams.ForEach(t => TeamsDtos.Add(new TeamDto()
+            {
+                TeamID = t.TeamID,
+                TeamName = t.TeamName,
+                TeamCity = t.TeamCity,
+                TeamCoachName = t.TeamCoachName
+            }));
+
+            return TeamsDtos;
         }
 
         // GET: api/TeamData/FindTeam/4
@@ -29,12 +51,19 @@ namespace TeamApplication.Controllers
         public IHttpActionResult FindTeam(int id)
         {
             Team team = db.Teams.Find(id);
+            TeamDto TeamDto = new TeamDto()
+            {
+                TeamID = team.TeamID,
+                TeamName = team.TeamName,
+                TeamCity = team.TeamCity,
+                TeamCoachName = team.TeamCoachName
+            };
             if (team == null)
             {
                 return NotFound();
             }
 
-            return Ok(team);
+            return Ok(TeamDto);
         }
 
         // POST: api/TeamData/UpdateTeam/4

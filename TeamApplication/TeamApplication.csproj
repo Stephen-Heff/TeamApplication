@@ -184,9 +184,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayerDataController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\StatController.cs" />
     <Compile Include="Controllers\StatDataController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TeamDataController.cs" />
+    <Compile Include="Controllers\UpdateStat.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +285,15 @@
     <Content Include="Views\Stat\Details.cshtml" />
     <Content Include="Views\Stat\New.cshtml" />
     <Content Include="Views\Stat\Error.cshtml" />
+    <Content Include="Views\Player\Details.cshtml" />
+    <Content Include="Views\Player\Error.cshtml" />
+    <Content Include="Views\Player\List.cshtml" />
+    <Content Include="Views\Player\New.cshtml" />
+    <Content Include="Views\Team\New.cshtml" />
+    <Content Include="Views\Team\List.cshtml" />
+    <Content Include="Views\Team\Error.cshtml" />
+    <Content Include="Views\Team\Details.cshtml" />
+    <Content Include="Views\Stat\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

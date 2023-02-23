@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TeamApplication.Models.TeamDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h1>List of Teams</h1>
+<a href="/Team/New"> Add Team</a>
+@foreach (var stat in Model)
+{
+    <h2><a href="/Teams/Details/@stat.TeamName"> @stat.TeamName</a></h2>
+    <h4>City: @stat.TeamCity</h4>
+    <h4>Coach: @stat.TeamCoachName</h4>
+}
+

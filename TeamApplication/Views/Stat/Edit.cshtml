@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Stat</h2>
+
+<form action="/Stat/Update/@Model.SelectedStat.StatID" method="POST">
+    <div style="display:none;">
+        @* Pass through the stat ID *@
+        <input type="text" name="StatID" value="@Model.SelectedStat.StatID" />
+    </div>
+    <div>
+        <label>Player Name:</label> <input type="text" name="PlayerName" value="@Model.SelectedStat.PlayerName" />
+    </div>
+    <div>
+        <label>Team Score Against:</label>
+
+        <select name="TeamsID">
+            @foreach (var teams in Model.TeamsOptions)
+            {
+                string selected = "";
+                if (teams.TeamsID == Model.SelectedStat.StatID)
+                {
+                    selected = "selected";
+                }
+                <option value="@teams.TeamID" @selected>@teams.TeamsName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Stat" />
+
+    </div>
+</form>

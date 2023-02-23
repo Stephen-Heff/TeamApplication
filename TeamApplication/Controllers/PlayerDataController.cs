@@ -16,11 +16,23 @@ namespace TeamApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public IEnumerable<PlayerDto> PlayerDtos { get; private set; }
+
         // GET: api/PlayerData/ListPlayers
         [HttpGet]
-        public IQueryable<Player> ListPlayers()
+        public IEnumerable<PlayerDto> ListPlayers()
         {
-            return db.Players;
+            List<Player> Players = db.Players.ToList();
+            List<PlayerDto> PlayersDtos = new List<PlayerDto>();
+
+            Players.ForEach(p => PlayersDtos.Add(new PlayerDto()
+            {
+                PlayerID = p.PlayerID,
+                PlayerName = p.PlayerName,
+                PlayerPosition = p.PlayerPosition
+            }));
+
+            return PlayersDtos;
         }
 
         // GET: api/PlayerData/FindPlayer/5
@@ -29,13 +41,19 @@ namespace TeamApplication.Controllers
         public IHttpActionResult FindPlayer(int id)
         {
             Player player = db.Players.Find(id);
+            PlayerDto PlayerDto = new PlayerDto() {
+                PlayerID = player.PlayerID,
+                PlayerName = player.PlayerName,
+                PlayerPosition = player.PlayerPosition
+            };
             if (player == null)
             {
                 return NotFound();
             }
 
-            return Ok(player);
+            return Ok(PlayerDto);
         }
+
 
         // POST: api/PlayerData/UpdatePlayer/30
         [ResponseType(typeof(void))]
@@ -121,3 +139,5 @@ namespace TeamApplication.Controllers
         }
     }
 }
+
+  

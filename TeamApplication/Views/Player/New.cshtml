@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Player</h2>
+<a href="/Player/List"> Go back to players</a>
+
+<form action="/Player/Create" method="post">
+    <div>
+        <label>Player ID:</label>
+        <input type="number" name="PlayerID" />
+    </div>
+    <div>
+        <label>Player name:</label>
+        <input type="text" name="PlayerName" />
+    </div>
+    <div>
+        <label>Player position:</label>
+        <input type="text" name="PlayerPosition" />
+    </div>
+    <div>
+
+        <input type="submit" value="Add Player" />
+    </div>
+
+</form>
+

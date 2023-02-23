@@ -15,8 +15,18 @@ namespace TeamApplication.Controllers
     public class StatDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        /// <summary>
+        /// Returns all stats in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all stats in the database
+        /// </returns>
+        /// <example>
+        /// GET: api/StatData/ListStats
+        /// </example>
 
-        // GET: api/StatData/ListStats
+      
         [HttpGet]
         public IEnumerable<StatDto> ListStats()
         {
@@ -33,7 +43,19 @@ namespace TeamApplication.Controllers
             return StatDtos;
         }
 
-        // GET: api/StatData/FindStat/5
+
+        /// <summary>
+        /// Gathers information about all stats 
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all stats in the database
+        /// </returns>
+        /// <param name="id">Stat ID.</param>
+        /// <example>
+        /// GET: api/StatData/FindStat/5
+        /// </example>
+        
         [ResponseType(typeof(Stat))]
         [HttpGet]
         public IHttpActionResult FindStat(int id)
@@ -53,7 +75,24 @@ namespace TeamApplication.Controllers
             return Ok(StatDto);
         }
 
-        // POST: api/StatData/UpdateStat/5
+
+        /// <summary>
+        /// Updates a particular stat in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Stat ID primary key</param>
+        /// <param name="stat">JSON FORM DATA of an stat</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/StatData/UpdateStat/5
+        /// FORM DATA: Stat JSON Object
+        /// </example>
+        
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateStat(int id, Stat stat)
@@ -65,6 +104,7 @@ namespace TeamApplication.Controllers
 
             if (id != stat.StatID)
             {
+
                 return BadRequest();
             }
 
@@ -85,7 +125,6 @@ namespace TeamApplication.Controllers
                     throw;
                 }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 
