@@ -1,5 +1,5 @@
 # Premier League TeamApplication 
-This is a content management system for Priemier Legaue Teams.
+This is a content management system for Premier Legaue Teams.
 - Please note: Not all fuctionality works, however those listed below do.
 
 ## CRUD Functionality:
