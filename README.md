@@ -1,4 +1,4 @@
-# Priemer League TeamApplication 
+# Premier League TeamApplication 
 This is a content management system for Priemier Legaue Teams.
 - Please note: Not all fuctionality works, however those listed below do.
 
