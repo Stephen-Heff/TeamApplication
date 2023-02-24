@@ -3,6 +3,20 @@
     ViewBag.Title = "List";
 }
 
+<style>
+    .navbar {
+        background-color: #1B2430;
+    }
+
+    body {
+        background-color: lightgray;
+    }
+
+    a {
+        color: seagreen;
+    }
+</style>
+
 <h1>List of Teams</h1>
 <a href="/Team/New"> Add Team</a>
 @foreach (var stat in Model)
