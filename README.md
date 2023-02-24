@@ -9,9 +9,9 @@ You should be able to add a new team, player and stat, update a coach when it ch
 This database has 3 tables (Player, Team and Stat). Each table has a primary key and the Stat table has two foreign keys. One for the player table (to retrieve a player's name) and two for the Team table (to retrieve the team a goal scored against).
 
 ## How to use the database
- 1. Get a List of Players curl https://localhost:44388/api/PlayerData/ListPlayers
- 2. Get a List of Teams curl https://localhost:44388/api/TeamData/ListTeams
- 3. Get a List of Stats curl https://localhost:44388/api/StatData/ListStats
+ 1. Get a List of Players  https://localhost:44388/api/PlayerData/ListPlayers
+ 2. Get a List of Teams  https://localhost:44388/api/TeamData/ListTeams
+ 3. Get a List of Stats  https://localhost:44388/api/StatData/ListStats
  4. View the list players https://localhost:44388/Player/List
  5. View the list of Teams https://localhost:44388/Team/List
  6. Viewthe list of Stats https://localhost:44388/Stat/List
